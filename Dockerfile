@@ -25,11 +25,5 @@ RUN mkdir utils && cd utils \
 && rmdir -p kafka/src
 
 
-# Copy dependency files
-COPY pyproject.toml ./
-
-# Install dependencies using uv
-RUN uv lock
-RUN uv sync --frozen --no-dev --no-install-project
-
-## TODO
+COPY requirements.txt ./
+RUN uv pip install --system -r requirements.txt
